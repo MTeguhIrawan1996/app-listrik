@@ -11,6 +11,7 @@
     <hr class="sidebar-divider">
     <?php
     $role_id = $this->session->userdata('role_id');
+    
     // admin
     if ($role_id == 1) : ?>
 
