@@ -27,7 +27,7 @@
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($user as $data) : ?>
+                                <?php foreach ($penghuni as $data) : ?>
                                 <tr>
                                     <td><?= $i; ?></td>
                                     <td><?= $data['nik']; ?></td>
@@ -115,7 +115,7 @@
 </div>
 
 <!-- Modal detail User -->
-<?php foreach ($user as $data) : ?>
+<?php foreach ($penghuni as $data) : ?>
 <div class="modal fade" id="formModalDetail<?= $data['id']; ?>" tabindex="-1" role="dialog"
     aria-labelledby="formModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

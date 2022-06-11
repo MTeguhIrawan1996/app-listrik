@@ -14,6 +14,7 @@ class Petugas extends CI_Controller
     public function index()
     {
         $data['title'] = 'Master Data';
+        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
         $data['petugas'] = $this->petugas->getPetugasAll();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required|trim|is_unique[user.nik]', ['is_unique' => 'NIK Terdaftar']);

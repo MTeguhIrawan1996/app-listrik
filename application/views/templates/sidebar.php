@@ -9,6 +9,10 @@
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <?php
+    $role_id = $this->session->userdata('role_id');
+    // admin
+    if ($role_id == 1) : ?>
 
     <?php if ($title == ('Halaman Admin')) : ?>
     <li class="nav-item active">
@@ -61,6 +65,20 @@
                 </div>
             </div>
     </li>
+    <!-- penghuni -->
+    <?php elseif ($role_id == 2) : ?>
+    <?php if ($title == ('Halaman Petugas')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
+    <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link pb-0" href="<?= base_url('userpetugas'); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Home</span></a>
+    </li>
+
+    <?php else : ?>
+    <!-- kabag -->
 
     <?php if ($title == ('Halaman Pelanggan')) : ?>
     <li class="nav-item active">
@@ -89,6 +107,7 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Anjukan Pemasangan</span></a>
     </li>
+    <?php endif; ?>
 
     <li class="nav-item">
         <a class="nav-link" href="<?= base_url('auth/logout') ?>">

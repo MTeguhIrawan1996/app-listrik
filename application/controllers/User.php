@@ -13,7 +13,8 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = 'Master Data';
-        $data['user'] = $this->user->getUserAll();
+        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
+        $data['penghuni'] = $this->user->getUserAll();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required|trim|is_unique[user.nik]', ['is_unique' => 'NIK Terdaftar']);
         $this->form_validation->set_rules('no_hp', 'Nomor Hp', 'required|trim|is_unique[user.no_hp]', ['is_unique' => 'Nomor Hp Terdaftar']);

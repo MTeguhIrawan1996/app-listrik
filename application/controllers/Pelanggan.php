@@ -12,6 +12,7 @@ class Pelanggan extends CI_Controller
     public function index()
     {
         $data['title'] = 'Halaman Pelanggan';
+        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -23,6 +24,7 @@ class Pelanggan extends CI_Controller
     public function dataPelanggan()
     {
         $data['title'] = 'Data Pelanggan';
+        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -34,6 +36,7 @@ class Pelanggan extends CI_Controller
     public function dataPemasangan()
     {
         $data['title'] = 'Data Pemasangan';
+        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
