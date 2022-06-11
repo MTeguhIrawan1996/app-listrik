@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 		goToDefaultPage();
-		$this->form_validation->set_rules('no_hp', 'Username', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Login Page';
@@ -25,10 +25,10 @@ class Auth extends CI_Controller {
 
 	private function _login()
 	{
-		$no_hp = $this->input->post('no_hp');
+		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		$user = $this->db->get_where('user', ['no_hp' => $no_hp])->row_array();
+		$user = $this->db->get_where('user', ['username' => $username])->row_array();
 		//jika user ada
 		if ($user) {
 			//jika user aktif
@@ -36,7 +36,8 @@ class Auth extends CI_Controller {
 				//cek password
 				if (password_verify($password, $user['password'])) {
 					$data = [
-						'no_hp' => $user['no_hp'],
+						'id' => $user['id'],
+						'username' => $user['username'],
 						'role_id' => $user['role_id']
 					];
 					$this->session->set_userdata($data);
@@ -64,7 +65,8 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
-		$this->session->unset_userdata('no_hp');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('id');
 		$this->session->unset_userdata('role_id');
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');

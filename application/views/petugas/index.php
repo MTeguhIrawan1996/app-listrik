@@ -21,6 +21,7 @@
                                 <tr>
                                     <th width="4%">#</th>
                                     <th>NIK</th>
+                                    <th>Username</th>
                                     <th>Nama</th>
                                     <th>Nomor HP</th>
                                     <th width="17%">Action</th>
@@ -32,6 +33,7 @@
                                 <tr>
                                     <td><?= $i; ?></td>
                                     <td><?= $data['nik']; ?></td>
+                                    <td><?= $data['username']; ?></td>
                                     <td><?= $data['nama']; ?></td>
                                     <td><?= $data['no_hp']; ?></td>
 
@@ -80,6 +82,13 @@
                         <label for="nik">NIK</label>
                         <input type="text" class="form-control" id="nik" name="nik" value="<?= set_value('nik'); ?>">
                         <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            value="<?= set_value('username'); ?>">
+                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
 
                     </div>
                     <div class="form-group">

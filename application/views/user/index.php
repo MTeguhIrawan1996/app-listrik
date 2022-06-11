@@ -20,6 +20,7 @@
                                 <tr>
                                     <th width="4%">#</th>
                                     <th>NIK</th>
+                                    <th>Username</th>
                                     <th>Nama</th>
                                     <th>Nomor HP</th>
                                     <th width="17%">Action</th>
@@ -31,6 +32,7 @@
                                 <tr>
                                     <td><?= $i; ?></td>
                                     <td><?= $data['nik']; ?></td>
+                                    <td><?= $data['username']; ?></td>
                                     <td><?= $data['nama']; ?></td>
                                     <td><?= $data['no_hp']; ?></td>
 
@@ -84,6 +86,13 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            value="<?= set_value('username'); ?>">
+                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+
+                    </div>
+                    <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" value="<?= set_value('nama'); ?>">
                         <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -133,6 +142,11 @@
                         <td width="190">Nik</td>
                         <td width="10">:</td>
                         <td><?= $data['nik']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>:</td>
+                        <td><?= $data['username']; ?></td>
                     </tr>
                     <tr>
                         <td>Nama</td>

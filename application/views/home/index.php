@@ -303,9 +303,9 @@
                             <div class="input-group mb-4">
                                 <label for="input" class="w-100">
                                     <span class="input-title">Username</span>
-                                    <input type="text" class="form-control mt-2" name="no_hp"
-                                        placeholder="Masukkan Nomor Hp" value="<?= set_value('no_hp'); ?>">
-                                    <?= form_error('no_hp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    <input type="text" class="form-control mt-2" name="username"
+                                        placeholder="Masukkan Username" value="<?= set_value('username'); ?>">
+                                    <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </label>
                             </div>
                             <div class="input-group mb-4">

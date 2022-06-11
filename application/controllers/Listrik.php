@@ -13,7 +13,7 @@ class Listrik extends CI_Controller
     public function index()
     {
         $data['title'] = 'Master Data';
-        $data['user'] = $this->db->get_where('user', ['no_hp' => $this->session->userdata('no_hp')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['listrik'] = $this->listrik->getListrikAll();
 
         $this->form_validation->set_rules('produk_layanan', 'Produk Layanan', 'required|trim');

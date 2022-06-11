@@ -8,6 +8,7 @@ class Petugas_model extends CI_model
     {
 			$data = [
                 'nik' => htmlspecialchars($this->input->post('nik', true)),
+                'username' => htmlspecialchars($this->input->post('username', true)),
 				'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'no_hp' => htmlspecialchars($this->input->post('no_hp', true)),
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
