@@ -66,7 +66,7 @@
                 </div>
             </div>
     </li>
-    <!-- penghuni -->
+    <!-- Petugas -->
     <?php elseif ($role_id == 2) : ?>
     <?php if ($title == ('Halaman Petugas')) : ?>
     <li class="nav-item active">
@@ -79,7 +79,7 @@
     </li>
 
     <?php else : ?>
-    <!-- kabag -->
+    <!-- Pelanggan -->
 
     <?php if ($title == ('Halaman Pelanggan')) : ?>
     <li class="nav-item active">
@@ -104,7 +104,7 @@
         <?php else : ?>
     <li class="nav-item">
         <?php endif; ?>
-        <a class="nav-link pb-0" href="<?= base_url('pelanggan/datapemasangan'); ?>">
+        <a class="nav-link pb-0" href="<?= base_url('pelanggan/ajukanpemasangan'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Anjukan Pemasangan</span></a>
     </li>
