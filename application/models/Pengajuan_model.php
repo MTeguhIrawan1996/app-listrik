@@ -36,8 +36,24 @@ class Pengajuan_model extends CI_model
             date_default_timezone_set('Asia/Jakarta');
             return 'LSTRK' . date('dmy') . $kd . '';
         }
-        
-        
-       
+    }
+
+    public function getDataPengajuanById()
+    {
+        $data = [
+            'user_id' => $this->session->userdata('id')
+        ];
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,');
+        $this->db->from('ajukan_pemasangan');
+        $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function batalDataPengajuan($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('ajukan_pemasangan');
     }
 }

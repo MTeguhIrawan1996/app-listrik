@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
 		//jika user ada
 		if ($user) {
 			//jika user aktif
-			if ($user['is_active'] == 1) {
+			if ($user['delete'] == 1) {
 				//cek password
 				if (password_verify($password, $user['password'])) {
 					$data = [
@@ -54,7 +54,7 @@ class Auth extends CI_Controller {
 					redirect('auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This username has not been activated!</div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username tidak aktif!</div>');
 				redirect('auth');
 			}
 		} else {

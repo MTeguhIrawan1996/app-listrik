@@ -13,8 +13,8 @@
                 <div class="card-body">
                     <table width="100%" style="font-size:16px">
                         <tr>
-                            <td width="120">Nik</td>
-                            <td width="10">:</td>
+                            <td>Nik</td>
+                            <td>:</td>
                             <td><?= $user['nik']; ?></td>
                         </tr>
                         <tr>

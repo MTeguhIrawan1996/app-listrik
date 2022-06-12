@@ -35,6 +35,19 @@ class Pelanggan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function dataPengajuan()
+    {
+        $data['title'] = 'Data Pengajuan';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pengajuan'] = $this->pengajuan->getDataPengajuanById();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('pelanggan/data-pengajuan', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function editPelanggan()
     {
         $data['title'] = 'Data Pelanggan';
@@ -80,7 +93,14 @@ class Pelanggan extends CI_Controller
     } else {
             $this->pengajuan->ajukanDataPengajuan();
             $this->session->set_flashdata('message', 'Pengajuan berhasil diajukan');
-            redirect('pelanggan/datapelanggan');
+            redirect('pelanggan/datapengajuan');
         }
+    }
+
+    public function batalPengajuan($id)
+    {
+        $this->pengajuan->batalDataPengajuan($id);
+        $this->session->set_flashdata('message', 'Pengajuan berhasil dibatalkan!');
+        redirect('pelanggan/datapengajuan');
     }
 }

@@ -21,7 +21,7 @@
                                     name="kode_pengajuan" value="<?= $kode_pengajuan ?>" readonly>
                             </div>
                             <div class=" form-group">
-                                <label for="user_id">Nik</label>
+                                <label for="user_id">NIK</label>
                                 <select name="user_id" id="user_id" class="form-control" style="width: 300px">
                                     <option value="">Pilih Data</option>
                                     <option value="<?= $user['id'];?>"><?= $user['nik'];?> || <?= $user['nama'];?>

@@ -14,6 +14,7 @@ class User_model extends CI_model
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'role_id' => 3,
 				'is_active' => 1,
+                'delete' => 1,
 				'date_created' => time()
 			];
 			$this->db->insert('user', $data);
@@ -23,7 +24,8 @@ class User_model extends CI_model
     public function getUserAll()
     {
         $data = [
-            'role_id' => 3
+            'role_id' => 3,
+            'delete' => 1
         ];
         return $this->db->get_where('user', $data)->result_array();
     }
@@ -40,8 +42,12 @@ class User_model extends CI_model
 
     public function hapusDataUser($id)
     {
+        $data = [
+            'delete' => 0
+        ];
+        $this->db->set($data);
         $this->db->where('id', $id);
-        $this->db->delete('user');
+        $this->db->update('user');
     }
 
 }

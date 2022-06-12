@@ -99,6 +99,15 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Data Pelanggan</span></a>
     </li>
+    <?php if ($title == ('Data Pengajuan')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
+    <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link pb-0" href="<?= base_url('pelanggan/datapengajuan'); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Data Pengajuan</span></a>
+    </li>
     <?php if ($title == ('Data Pemasangan')) : ?>
     <li class="nav-item active">
         <?php else : ?>
