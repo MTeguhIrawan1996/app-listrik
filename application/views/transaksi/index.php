@@ -46,17 +46,14 @@
                                     <td><?= $data['produk_layanan']; ?> || <?= $data['daya']; ?></td>
                                     <td><?= date('d F Y', $data['tgl_pengajuan']); ?></td>
                                     <td><?php if ($data['status'] == 0) {
-                                                echo '<a href="' . base_url('pindahkamaradmin/verifikasi/') . '' . $data['id'] . '" class="badge badge-danger">Menunggu Verifikasi</a>';
+                                                echo '<a href="' . base_url('transaksi/verifikasi/') . '' . $data['id'] . '" class="badge badge-danger">Menunggu Verifikasi</a>';
                                             } else {
                                                 echo '<span class="badge badge-success mb-2">Diverifikasi</span>';
                                             } ?></td>
                                     <td>
-                                        <?php if ($data['status'] == 0) {
-                                                echo '<a href="' . base_url('pindahkamaradmin/hapus/') . '' . $data['id'] . '" class="badge badge-danger tombol-hapus">delete</a>';
-                                            } else {
-                                                echo '<a href="' . base_url('pindahkamaradmin/hapus/') . '' . $data['id'] . '" class="badge badge-danger tombol-hapus">delete</a>
-                                                <a href="' . base_url('laporan/pindahkamar/') . '' . $data['id'] . '" class="badge badge-warning" target="_blank">cetak</a>';
-                                            } ?>
+                                        <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>"
+                                            class="badge badge-danger tombol-hapus">delete</a>
+
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

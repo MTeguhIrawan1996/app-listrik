@@ -63,6 +63,7 @@
                 <?php endif; ?>
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="<?= base_url('transaksi'); ?>">Pengajuan Pemasangan</a>
+                    <a class="collapse-item" href="<?= base_url('transaksi/surattugas'); ?>">Surat Tugas</a>
                 </div>
             </div>
     </li>

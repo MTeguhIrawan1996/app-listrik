@@ -10,6 +10,7 @@ class Pengajuan_model extends CI_model
                 'user_id' => htmlspecialchars($this->input->post('user_id', true)),
                 'listrik_id' => htmlspecialchars($this->input->post('layanan', true)),
 				'status' => 0,
+                'delete' => 1,
 				'tgl_pengajuan' => time(),
                 'tgl_input_data' => date('Y-m-d')
 			];
@@ -61,12 +62,32 @@ class Pengajuan_model extends CI_model
 
     public function getDataPengajuanAll()
     {
-
+         $data = [
+            'ajukan_pemasangan.delete' => 1
+        ];
         $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
         $this->db->from('ajukan_pemasangan');
         $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
         $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
+        $this->db->where($data);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+        public function updateStatusVerifikasi($id)
+    {
+        $this->db->set('status', 1);
+        $this->db->where('id', $id);
+        $this->db->update('ajukan_pemasangan');
+    }
+
+    public function hapusDataPengajuan($id)
+    {
+       $data = [
+            'delete' => 0
+        ];
+        $this->db->set($data);
+        $this->db->where('id', $id);
+        $this->db->update('ajukan_pemasangan');
     }
 }
