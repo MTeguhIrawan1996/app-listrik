@@ -9,6 +9,7 @@ class Pelanggan extends CI_Controller
         is_logged_in();
         $this->load->model('Pelanggan_model', 'pelanggan');
         $this->load->model('Pengajuan_model', 'pengajuan');
+        $this->load->model('Listrik_model', 'listrik');
     }
 
     public function index()
@@ -79,8 +80,10 @@ class Pelanggan extends CI_Controller
         $data['title'] = 'Data Pemasangan';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['kode_pengajuan'] = $this->pengajuan->getKodePengajuan();
+        $data['listrik'] = $this->listrik->getListrikAll();
 
         $this->form_validation->set_rules('user_id', 'Data Nik', 'required|trim');
+        $this->form_validation->set_rules('layanan', 'Layanan', 'required|trim');
         $this->form_validation->set_rules('kode_pengajuan', 'Data Pengajuan', 'trim|is_unique[ajukan_pemasangan.kode_pengajuan]', ['is_unique' => 'Selesaikan pengajuan sebelumnya']);
         
 

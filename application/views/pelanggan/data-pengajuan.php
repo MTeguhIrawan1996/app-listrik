@@ -27,7 +27,19 @@
                         <?php elseif (!empty($pengajuan['status']) == 1) : ?>
                         <div>
                             Satatus:
-                            <span class="badge badge-success mb-2">Disetujui</span>
+                            <span class="badge badge-success mb-2">Disetujui akan dilakukan Survey</span>
+                        </div>
+                        <?php endif; ?>
+                        <!-- Layanan -->
+                        <?php if (empty($pengajuan['user_id'])) : ?>
+                        <div>
+                            Layanan:
+                        </div>
+                        <?php else : ?>
+                        <div>
+                            Layanan:
+                            <span class="badge badge-success mb-2"><?= $pengajuan['produk_layanan'] ;?></span>
+                            <span class="badge badge-success mb-2"><?= $pengajuan['daya'] ;?></span>
                         </div>
                         <?php endif; ?>
                         <table class="table table-bordered" width="100%" cellspacing="0">

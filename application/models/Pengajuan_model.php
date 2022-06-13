@@ -8,6 +8,7 @@ class Pengajuan_model extends CI_model
 			$data = [
                 'kode_pengajuan' => htmlspecialchars($this->input->post('kode_pengajuan', true)),
                 'user_id' => htmlspecialchars($this->input->post('user_id', true)),
+                'listrik_id' => htmlspecialchars($this->input->post('layanan', true)),
 				'status' => 0,
 				'tgl_pengajuan' => time(),
                 'tgl_input_data' => date('Y-m-d')
@@ -43,9 +44,10 @@ class Pengajuan_model extends CI_model
         $data = [
             'user_id' => $this->session->userdata('id')
         ];
-        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,');
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
         $this->db->from('ajukan_pemasangan');
         $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
+        $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
         $this->db->where($data);
         $query = $this->db->get();
         return $query->row_array();
@@ -55,5 +57,16 @@ class Pengajuan_model extends CI_model
     {
         $this->db->where('id', $id);
         $this->db->delete('ajukan_pemasangan');
+    }
+
+    public function getDataPengajuanAll()
+    {
+
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
+        $this->db->from('ajukan_pemasangan');
+        $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
+        $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

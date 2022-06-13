@@ -30,6 +30,19 @@
                                 <?= form_error('user_id', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class=" form-group">
+                                <label for="layanan">Jenis Layanan</label>
+                                <select name="layanan" id="layanan" class="form-control" style="width: 300px">
+                                    <option value="">Pilih Data</option>
+                                    <?php foreach ($listrik as $data) : ?>
+                                    <option value="<?= $data['id'];?>"><?= $data['produk_layanan'];?> ||
+                                        <?= $data['daya'];?>
+
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?= form_error('layanan', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class=" form-group">
                                 <label for="no_hp">Nomor Telepon</label>
                                 <input name="no_hp" id="no_hp" class="form-control" readonly style="width: 300px"
                                     placeholder="<?= $user['no_hp'];?>">

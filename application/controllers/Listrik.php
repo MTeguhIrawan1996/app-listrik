@@ -42,6 +42,7 @@ class Listrik extends CI_Controller
     public function ubahListrik($id)
     {
         $data['title'] = 'Master Data';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['listrik'] = $this->listrik->getListrikById($id);
         $this->form_validation->set_rules('produk_layanan', 'Produk layanan', 'required|trim');
         $this->form_validation->set_rules('daya', 'daya', 'required|trim');

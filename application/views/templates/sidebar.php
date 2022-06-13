@@ -62,7 +62,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <?php endif; ?>
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="<?= base_url('pemasangan'); ?>">Pengajuan Pemasangan</a>
+                    <a class="collapse-item" href="<?= base_url('transaksi'); ?>">Pengajuan Pemasangan</a>
                 </div>
             </div>
     </li>
