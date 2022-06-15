@@ -74,6 +74,21 @@ class Pengajuan_model extends CI_model
         return $query->result_array();
     }
 
+    public function getDataPengajuanVerify()
+    {
+         $data = [
+            'ajukan_pemasangan.delete' => 1,
+            'ajukan_pemasangan.status' => 1
+        ];
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
+        $this->db->from('ajukan_pemasangan');
+        $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
+        $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
         public function updateStatusVerifikasi($id)
     {
         $this->db->set('status', 1);
