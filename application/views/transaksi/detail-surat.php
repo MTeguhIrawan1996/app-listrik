@@ -102,15 +102,23 @@
                     <thead>
                         <tr>
                             <th width="5%">#</th>
-                            <th>Kode</th>
-                            <th>Keterangan</th>
-                            <th>Denda</th>
-                            <th>Total Biaya</th>
+                            <th>Nama</th>
+                            <th>Nomor Hp</th>
+                            <th>Produk Layanan</th>
+                            <th>Daya</th>
+                            <th>Alamat</th>
+                            <th>Kecamatan</th>
+                            <th>Kelurahan</th>
+                            <th>Provinsi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
