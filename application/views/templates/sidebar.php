@@ -120,8 +120,18 @@
     </li>
     <?php endif; ?>
 
+    <?php if ($title == ('Ubah Password')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('auth/logout') ?>">
+        <?php endif; ?>
+        <a class="nav-link pb-0" href="<?= base_url('auth/ubahpassword') ?>">
+            <i class="fas fa-fw fa-sign-out-alt"></i>
+            <span>Ubah Password</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link pb-0" href="<?= base_url('auth/logout') ?>">
             <i class="fas fa-fw fa-sign-out-alt"></i>
             <span>Logout</span></a>
     </li>
