@@ -115,15 +115,15 @@
                     <tbody>
                         <?php $i = 1; ?>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?=$i; ?></td>
+                            <td><?=$pengajuan['nama']; ?></td>
+                            <td><?=$pengajuan['no_hp']; ?></td>
+                            <td><?=$pengajuan['produk_layanan']; ?></td>
+                            <td><?=$pengajuan['daya']; ?></td>
+                            <td><?=$pengajuan['alamat']; ?></td>
+                            <td><?=$pengajuan['kecamatan']; ?></td>
+                            <td><?=$pengajuan['kelurahan']; ?></td>
+                            <td><?=$pengajuan['provinsi']; ?></td>
                         </tr>
                         <?php $i++; ?>
                     </tbody>

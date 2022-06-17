@@ -22,7 +22,7 @@ class Surat_model extends CI_model
     public function getSuratAll()
     {
 
-        $this->db->select('surat_tugas.id,kode_surat,nama,kode_pengajuan,ket,tgl_surat,nik');
+        $this->db->select('surat_tugas.id,kode_surat,nama,kode_pengajuan,ket,tgl_surat,nik,ajukan_id');
         $this->db->from('surat_tugas');
         $this->db->join('user', 'surat_tugas.petugas_id=user.id');
         $this->db->join('ajukan_pemasangan', 'surat_tugas.ajukan_id=ajukan_pemasangan.id');
@@ -39,6 +39,21 @@ class Surat_model extends CI_model
         $this->db->from('surat_tugas');
         $this->db->join('user', 'surat_tugas.petugas_id=user.id');
         $this->db->join('ajukan_pemasangan', 'surat_tugas.ajukan_id=ajukan_pemasangan.id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function getSuratByAjukanId($ajukan_id)
+    {
+        $data = [
+            'ajukan_pemasangan.id' => $ajukan_id
+        ];
+        
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
+        $this->db->from('ajukan_pemasangan');
+        $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
+        $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
         $this->db->where($data);
         $query = $this->db->get();
         return $query->row_array();

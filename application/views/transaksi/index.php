@@ -46,13 +46,17 @@
                                     <td><?= $data['produk_layanan']; ?> || <?= $data['daya']; ?></td>
                                     <td><?= date('d F Y', $data['tgl_pengajuan']); ?></td>
                                     <td><?php if ($data['status'] == 0) {
-                                                echo '<a href="' . base_url('transaksi/verifikasi/') . '' . $data['id'] . '" class="badge badge-danger">Menunggu Verifikasi</a>';
-                                            } else {
+                                                echo '<span class="badge badge-warning mb-2">Menunggu Verifikasi</span>';
+                                            } if ($data['status'] == 1) {
+                                                echo '<span class="badge badge-danger mb-2">Ditolak</span>';
+                                            }  elseif ($data['status'] == 2) {
                                                 echo '<span class="badge badge-success mb-2">Diverifikasi</span>';
                                             } ?></td>
                                     <td>
+                                        <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>"
+                                            class="badge badge-success">Verifikasi</a>
                                         <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>"
-                                            class="badge badge-danger tombol-hapus">delete</a>
+                                            class="badge badge-danger tombol-hapus">Tolak</a>
 
                                     </td>
                                 </tr>

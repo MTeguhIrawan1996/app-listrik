@@ -37,7 +37,7 @@ class Transaksi extends CI_Controller
     public function hapus($id)
     {
         $this->pengajuan->hapusDataPengajuan($id);
-        $this->session->set_flashdata('message', 'Data pengajuan berhasil dihapus');
+        $this->session->set_flashdata('message', 'Data pengajuan berhasil ditolak');
         redirect('transaksi');
     }
 
@@ -57,11 +57,12 @@ class Transaksi extends CI_Controller
 
     }
 
-    public function detailsurat($id)
+    public function detailsurat($id, $ajukan_id)
     {
         $data['title'] = 'Transaksi';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['surat'] = $this->surat->getSuratById($id);
+        $data['pengajuan'] = $this->surat->getSuratByAjukanId($ajukan_id);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

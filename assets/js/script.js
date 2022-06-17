@@ -42,7 +42,7 @@ $(".tombol-hapus").on("click", function (e) {
 		showCancelButton: true,
 		confirmButtonColor: "#3085d6",
 		cancelButtonColor: "#d33",
-		confirmButtonText: "Hapus!",
+		confirmButtonText: "Lanjut!",
 	}).then((result) => {
 		if (result.value) {
 			document.location.href = href;

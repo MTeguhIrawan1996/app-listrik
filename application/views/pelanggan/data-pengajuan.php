@@ -19,15 +19,20 @@
                         <div>
                             Satatus:
                         </div>
-                        <?php elseif (!empty($pengajuan['status']) == 0) : ?>
+                        <?php elseif ($pengajuan['status'] == 0) : ?>
                         <div>
                             Satatus:
                             <span class="badge badge-danger mb-2">Menunggu Verifikasi</span>
                         </div>
-                        <?php elseif (!empty($pengajuan['status']) == 1) : ?>
+                        <?php elseif ($pengajuan['status'] == 1) : ?>
                         <div>
                             Satatus:
-                            <span class="badge badge-success mb-2">Disetujui akan dilakukan Survey</span>
+                            <span class="badge badge-danger mb-2">Pengajuan ditolak</span>
+                        </div>
+                        <?php elseif ($pengajuan['status'] == 2) : ?>
+                        <div>
+                            Satatus:
+                            <span class="badge badge-success mb-2">Disetujui akan dilakukan survey</span>
                         </div>
                         <?php endif; ?>
                         <!-- Layanan -->

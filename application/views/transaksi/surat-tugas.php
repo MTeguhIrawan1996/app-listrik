@@ -37,7 +37,7 @@
                                     <td><?= $data['ket']; ?></td>
                                     <td><?= date('d F Y', $data['tgl_surat']); ?></td>
                                     <td>
-                                        <a href="<?= base_url('transaksi/detailsurat/'); ?><?= $data['id']; ?>"
+                                        <a href="<?= base_url('transaksi/detailsurat/'); ?><?= $data['id']; ?>/<?= $data['ajukan_id']; ?>"
                                             class="badge badge-success">Detail</a>
                                         <a href="<?= base_url('transaksi/hapussurat/'); ?><?= $data['id']; ?>"
                                             class="badge badge-danger tombol-hapus">Hapus</a>

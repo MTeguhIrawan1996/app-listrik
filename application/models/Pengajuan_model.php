@@ -78,7 +78,7 @@ class Pengajuan_model extends CI_model
     {
          $data = [
             'ajukan_pemasangan.delete' => 1,
-            'ajukan_pemasangan.status' => 1
+            'ajukan_pemasangan.status' => 2
         ];
         $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
         $this->db->from('ajukan_pemasangan');
@@ -91,7 +91,7 @@ class Pengajuan_model extends CI_model
 
         public function updateStatusVerifikasi($id)
     {
-        $this->db->set('status', 1);
+        $this->db->set('status', 2);
         $this->db->where('id', $id);
         $this->db->update('ajukan_pemasangan');
     }
@@ -99,7 +99,7 @@ class Pengajuan_model extends CI_model
     public function hapusDataPengajuan($id)
     {
        $data = [
-            'delete' => 0
+            'status' => 1
         ];
         $this->db->set($data);
         $this->db->where('id', $id);
