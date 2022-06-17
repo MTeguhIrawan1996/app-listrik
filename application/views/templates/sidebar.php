@@ -118,6 +118,15 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Anjukan Pemasangan</span></a>
     </li>
+    <?php if ($title == ('Tracking Proses Pemasangan')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
+    <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link pb-0" href="<?= base_url('pelanggan/trackingproses'); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Tracking Proses Pemasangan</span></a>
+    </li>
     <?php endif; ?>
 
     <?php if ($title == ('Ubah Password')) : ?>

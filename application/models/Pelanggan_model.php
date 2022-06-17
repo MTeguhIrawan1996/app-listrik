@@ -20,4 +20,17 @@ class Pelanggan_model extends CI_model
         $this->db->where($id);
         $this->db->update('user', $data);
     }
+
+    public function getDataTrackingById()
+    {
+        $data = [
+            'user_id' => $this->session->userdata('id')
+        ];
+        $this->db->select('*');
+        $this->db->from('tracking');
+        $this->db->join('ajukan_pemasangan', 'tracking.ajukan_user_id=ajukan_pemasangan.user_id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

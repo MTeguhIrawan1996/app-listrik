@@ -1,0 +1,19 @@
+.card {
+	background: #fefefe;
+	box-shadow: 0px 4px 15px #f1f1f8;
+	border-radius: 8px;
+	border: none;
+	text-decoration: none !important;
+}
+
+.card-list {
+	margin-bottom: 10px;
+
+	.card-body {
+		font-size: 18px;
+		font-family: "Nunito";
+		font-weight: 700;
+		line-height: 40px;
+		color: #858796;
+	}
+}

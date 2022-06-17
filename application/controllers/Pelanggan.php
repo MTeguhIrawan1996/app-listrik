@@ -106,4 +106,18 @@ class Pelanggan extends CI_Controller
         $this->session->set_flashdata('message', 'Pengajuan berhasil dibatalkan!');
         redirect('pelanggan/datapengajuan');
     }
+
+    public function trackingProses()
+    {
+        $data['title'] = 'Tracking Proses Pemasangan';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pengajuan'] = $this->pengajuan->getDataPengajuanById();
+        $data['tracking'] = $this->pelanggan->getDataTrackingById();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('pelanggan/tracking-proses', $data);
+        $this->load->view('templates/footer');
+    }
 }

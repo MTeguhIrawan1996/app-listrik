@@ -24,6 +24,7 @@
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="<?= base_url('assets/'); ?>css/jquery-ui.min.css" rel="stylesheet">
     <link href="<?= base_url('assets/'); ?>css/jquery-ui.theme.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/'); ?>css/style/main.css" rel="stylesheet">
 
 </head>
 
