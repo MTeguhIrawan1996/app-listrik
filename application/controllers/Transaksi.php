@@ -27,9 +27,10 @@ class Transaksi extends CI_Controller
 
     }
 
-    public function verifikasi($id)
+    public function verifikasi($id,$user_id)
     {
         $this->pengajuan->updateStatusVerifikasi($id);
+        $this->pengajuan->kirimDataTrackingVerifikasi($user_id);
         $this->session->set_flashdata('message', 'Verifikasi berhasil');
         redirect('transaksi');
     }
@@ -100,8 +101,8 @@ class Transaksi extends CI_Controller
         $this->load->view('transaksi/form-surat-tugas', $data);
         $this->load->view('templates/footer');
         } else {
-
             $this->surat->tambahDataSurat();
+            $this->surat->kirimDataTrackingSurvey();
             $this->session->set_flashdata('message', 'Surat Tugas Berhasil dibuat');
             redirect('transaksi/surattugas');
         }

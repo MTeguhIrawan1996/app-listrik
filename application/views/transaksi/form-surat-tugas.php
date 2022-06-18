@@ -30,6 +30,8 @@
                                 </select>
                                 <?= form_error('user_id', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
+                            <input type="text" class="form-control" style="width: 300px" id="pelanggan_id"
+                                name="pelanggan_id" value="" hidden>
                             <div class=" form-group">
                                 <label for="ajukan_id">Kode Pengajuan</label>
                                 <select name="ajukan_id" id="ajukan_id" class="form-control" style="width: 300px"

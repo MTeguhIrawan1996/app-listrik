@@ -16,7 +16,11 @@
                     <td>
                         <h5>
                             <b>
-                                <?=$pengajuan['kode_pengajuan']; ?>
+                                <?php if (empty($pengajuan['kode_pengajuan'])) {
+                                            echo '';
+                                        } else {
+                                            echo ($pengajuan['kode_pengajuan']);
+                                        } ?>
                             </b>
                         </h5>
                     </td>
@@ -31,7 +35,11 @@
                     <td>
                         <h5>
                             <b>
-                                <?=$pengajuan['produk_layanan']; ?>
+                                <?php if (empty($pengajuan['produk_layanan'])) {
+                                            echo '';
+                                        } else {
+                                            echo ($pengajuan['produk_layanan']);
+                                        } ?>
                             </b>
                         </h5>
                     </td>
@@ -46,7 +54,11 @@
                     <td>
                         <h5>
                             <b>
-                                <?=$pengajuan['daya']; ?>
+                                <?php if (empty($pengajuan['daya'])) {
+                                            echo '';
+                                        } else {
+                                            echo ($pengajuan['daya']);
+                                        } ?>
                             </b>
                         </h5>
                     </td>
@@ -61,7 +73,11 @@
                     <td>
                         <h5>
                             <b>
-                                <?=date('d F Y', $pengajuan['tgl_pengajuan']); ?>
+                                <?php if (empty($pengajuan['tgl_pengajuan'])) {
+                                            echo '';
+                                        } else {
+                                            echo date('d F Y', $pengajuan['tgl_pengajuan']);
+                                        } ?>
                             </b>
                         </h5>
                     </td>
@@ -89,7 +105,7 @@
                                     <img src="<?= base_url('assets/img/dashboard-arrow-right.svg') ?>" alt="" />
                                 </div>
                                 <div class="col-md-5">
-                                    <?= date('d F Y', $data['tgl']); ?>
+                                    <?= date('d F Y', strtotime($data['tgl_tracking'])); ?>
                                 </div>
                             </div>
                         </div>

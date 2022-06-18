@@ -72,6 +72,17 @@ class Surat_model extends CI_model
 			$this->db->insert('surat_tugas', $data);
     }
 
+    public function kirimDataTrackingSurvey()
+    {
+        $data = [
+                'ajukan_user_id' => htmlspecialchars($this->input->post('pelanggan_id', true)),
+				'ket' => 'Proses Survey Oleh Petugas',
+				'tgl_tracking' => date('Y-m-d'),
+			];
+			$this->db->insert('tracking', $data);
+    }
+
+
     public function hapusDataSurat($id)
     {
         $this->db->where('id', $id);
@@ -117,6 +128,7 @@ class Surat_model extends CI_model
         if ($hsl->num_rows() > 0) {
             foreach ($hsl->result() as $tampil) {
                 $hasil = array(
+                    'user_id' => $tampil->user_id,
                     'nik' => $tampil->nik,
                     'no_hp' => $tampil->no_hp,
                     'alamat' => $tampil->alamat,

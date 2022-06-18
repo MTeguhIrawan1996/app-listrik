@@ -95,6 +95,7 @@ class Pelanggan extends CI_Controller
         $this->load->view('templates/footer');
     } else {
             $this->pengajuan->ajukanDataPengajuan();
+            $this->pengajuan->kirimDataTrackingPengajuan();
             $this->session->set_flashdata('message', 'Pengajuan berhasil diajukan');
             redirect('pelanggan/datapengajuan');
         }

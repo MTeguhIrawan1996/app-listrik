@@ -18,6 +18,28 @@ class Pengajuan_model extends CI_model
 
     }
 
+    public function kirimDataTrackingPengajuan()
+    {
+			$data = [
+                'ajukan_user_id' => htmlspecialchars($this->input->post('user_id', true)),
+				'ket' => 'Diajukan',
+                'tgl_tracking' => date('Y-m-d')
+			];
+			$this->db->insert('tracking', $data);
+
+    }
+
+    public function kirimDataTrackingVerifikasi($user_id)
+    {
+			$data = [
+                'ajukan_user_id' => $user_id,
+				'ket' => 'Disetujui',
+                'tgl_tracking' => date('Y-m-d')
+			];
+			$this->db->insert('tracking', $data);
+
+    }
+
     public function getKodePengajuan()
     {
         $id = [

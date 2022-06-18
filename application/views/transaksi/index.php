@@ -53,7 +53,7 @@
                                                 echo '<span class="badge badge-success mb-2">Diverifikasi</span>';
                                             } ?></td>
                                     <td>
-                                        <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>"
+                                        <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>/<?= $data['user_id']?>"
                                             class="badge badge-success">Verifikasi</a>
                                         <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>"
                                             class="badge badge-danger tombol-hapus">Tolak</a>

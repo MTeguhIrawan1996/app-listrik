@@ -63,6 +63,7 @@ function autofill() {
 		dataType: "json",
 		cache: false,
 		success: function (data) {
+			$("#pelanggan_id").val(data.user_id);
 			$("#nik").val(data.nik);
 			$("#no_hp").val(data.no_hp);
 			$("#alamat").val(data.alamat);
