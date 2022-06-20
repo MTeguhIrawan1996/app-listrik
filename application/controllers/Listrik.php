@@ -18,6 +18,7 @@ class Listrik extends CI_Controller
 
         $this->form_validation->set_rules('produk_layanan', 'Produk Layanan', 'required|trim');
         $this->form_validation->set_rules('daya', 'Daya', 'required|trim');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim');
 
         if ($this->form_validation->run() == false) {
         $this->load->view('templates/header', $data);
@@ -46,6 +47,7 @@ class Listrik extends CI_Controller
         $data['listrik'] = $this->listrik->getListrikById($id);
         $this->form_validation->set_rules('produk_layanan', 'Produk layanan', 'required|trim');
         $this->form_validation->set_rules('daya', 'daya', 'required|trim');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim');
         
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

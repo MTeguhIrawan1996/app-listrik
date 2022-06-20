@@ -64,6 +64,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="<?= base_url('transaksi'); ?>">Pengajuan Pemasangan</a>
                     <a class="collapse-item" href="<?= base_url('transaksi/surattugas'); ?>">Surat Tugas</a>
+                    <a class="collapse-item" href="<?= base_url('transaksi/pembayaran'); ?>">Pembayaran</a>
                 </div>
             </div>
     </li>
@@ -77,6 +78,15 @@
         <a class="nav-link pb-0" href="<?= base_url('userpetugas'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
+    </li>
+    <?php if ($title == ('Surat Tugas')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
+    <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link pb-0" href="<?= base_url('userpetugas/surattugas'); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Surat Tugas</span></a>
     </li>
 
     <?php else : ?>

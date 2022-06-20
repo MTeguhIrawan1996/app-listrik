@@ -67,7 +67,7 @@ class Pengajuan_model extends CI_model
         $data = [
             'user_id' => $this->session->userdata('id')
         ];
-        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
+        $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan,harga');
         $this->db->from('ajukan_pemasangan');
         $this->db->join('user', 'ajukan_pemasangan.user_id=user.id');
         $this->db->join('listrik', 'ajukan_pemasangan.listrik_id=listrik.id');
@@ -100,7 +100,7 @@ class Pengajuan_model extends CI_model
     {
          $data = [
             'ajukan_pemasangan.delete' => 1,
-            'ajukan_pemasangan.status' => 2
+            'ajukan_pemasangan.status' != 0 AND 1 
         ];
         $this->db->select('ajukan_pemasangan.id,ajukan_pemasangan.user_id,kode_pengajuan,nama,nik,no_hp,tgl_pengajuan,alamat,kelurahan,kecamatan,provinsi,status,daya,produk_layanan');
         $this->db->from('ajukan_pemasangan');
@@ -126,5 +126,30 @@ class Pengajuan_model extends CI_model
         $this->db->set($data);
         $this->db->where('id', $id);
         $this->db->update('ajukan_pemasangan');
+    }
+
+        public function updateStatusPengajuanSurvey()
+    {
+        $this->db->set('status', 3);
+        $this->db->where('id', htmlspecialchars($this->input->post('ajukan_id', true)));
+        $this->db->update('ajukan_pemasangan');
+    }
+
+        public function updateStatusSelesai($id)
+    {
+        $this->db->set('status', 5);
+        $this->db->where('id', $id);
+        $this->db->update('ajukan_pemasangan');
+    }
+
+    public function kirimDataTrackingSelesai($user_id)
+    {
+			$data = [
+                'ajukan_user_id' => $user_id,
+				'ket' => 'Pemasangan Selesai',
+                'tgl_tracking' => date('Y-m-d')
+			];
+			$this->db->insert('tracking', $data);
+
     }
 }

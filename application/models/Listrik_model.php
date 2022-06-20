@@ -9,7 +9,8 @@ class Listrik_model extends CI_model
 			$data = [
                 'produk_layanan' => htmlspecialchars($this->input->post('produk_layanan', true)),
 				'daya' => htmlspecialchars($this->input->post('daya', true)),
-                'delete' => 1,
+                'harga' => htmlspecialchars($this->input->post('harga', true)),
+                'delete' => 1
 			];
 			$this->db->insert('listrik', $data);
 
@@ -45,7 +46,8 @@ class Listrik_model extends CI_model
     {
         $data = [
             'produk_layanan' => htmlspecialchars($this->input->post('produk_layanan', true)),
-            'daya' => htmlspecialchars($this->input->post('daya', true))
+            'daya' => htmlspecialchars($this->input->post('daya', true)),
+            'harga' => htmlspecialchars($this->input->post('harga', true))
         ];
         $this->db->where('id', $id);
         $this->db->update('listrik', $data);

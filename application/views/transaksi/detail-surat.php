@@ -68,7 +68,7 @@
                 </tr>
                 <tr>
                     <td width="25%">
-                        <h5><b>Keterangan surat</b> </h5>
+                        <h5><b>Keterangan Tugas</b> </h5>
                     </td>
                     <td>
                         <h5><b>:</b></h5>
@@ -130,8 +130,29 @@
                 </table>
 
                 <div class="col-sm-0">
-                    <button type="submit" class="btn btn-primary">Cetak</button>
-                    <a href="<?= base_url('transaksi/surattugas'); ?>" class="btn btn-primary">Kembali</a>
+                    <button type="submit" class="btn btn-warning">Cetak</button>
+                    <?php
+                    $role_id = $this->session->userdata('role_id');
+                    
+                    // admin
+                    if ($role_id == 1) : ?>
+                    <?php if ($pengajuan['status'] == 4) {
+                        echo '<a href="'. base_url('transaksi/selesaipemasangan/').''. $pengajuan['id'] .'/'. $pengajuan['user_id'].'"
+                        class="btn btn-success tombol-hapus">Pemasangan
+                        Selesai</a>';
+                    } else {
+                        echo '';
+                    } ?>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#formModal2">Aksi</button>
+                    <a href="<?= base_url('transaksi/surattugas'); ?>" class="btn btn-danger">Kembali</a>
+
+                    <!-- Petugas -->
+                    <?php else : ?>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#formModal1">Aksi</button>
+                    <a href="<?= base_url('userpetugas/surattugas'); ?>" class="btn btn-danger">Kembali</a>
+                    <?php endif; ?>
                 </div>
 
             </div>
@@ -139,6 +160,57 @@
     </div>
 </div>
 <!-- /.container-fluid -->
+<div class="modal fade" id="formModal1" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel1">Keterangan Tugas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('userpetugas/aksi') ?>" method="post">
+                    <input type="text" name="id" value="<?= $surat['id']; ?>" hidden>
+                    <div class="form-group">
+                        <textarea class="form-control" id="ket" name="ket" style="width: 300px" required></textarea>
+                        <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="tobolTambahDataPetugas" class="btn btn-primary">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formModal2" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel1">Keterangan Tugas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('transaksi/aksi') ?>" method="post">
+                    <input type="text" name="id" value="<?= $surat['id']; ?>" hidden>
+                    <div class="form-group">
+                        <textarea class="form-control" id="ket" name="ket" style="width: 300px" required></textarea>
+                        <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="tobolTambahDataPetugas" class="btn btn-primary">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 <!-- End of Main Content -->

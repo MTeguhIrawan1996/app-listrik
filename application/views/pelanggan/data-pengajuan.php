@@ -34,6 +34,21 @@
                             Satatus:
                             <span class="badge badge-success mb-2">Disetujui akan dilakukan survey</span>
                         </div>
+                        <?php elseif ($pengajuan['status'] == 3) : ?>
+                        <div>
+                            Satatus:
+                            <span class="badge badge-success mb-2">Proses Survey</span>
+                        </div>
+                        <?php elseif ($pengajuan['status'] == 4) : ?>
+                        <div>
+                            Satatus:
+                            <span class="badge badge-success mb-2">Proses Pemasangan</span>
+                        </div>
+                        <?php elseif ($pengajuan['status'] == 5) : ?>
+                        <div>
+                            Satatus:
+                            <span class="badge badge-success mb-2">Pemasangan Selesai</span>
+                        </div>
                         <?php endif; ?>
                         <!-- Layanan -->
                         <?php if (empty($pengajuan['user_id'])) : ?>
@@ -45,6 +60,11 @@
                             Layanan:
                             <span class="badge badge-success mb-2"><?= $pengajuan['produk_layanan'] ;?></span>
                             <span class="badge badge-success mb-2"><?= $pengajuan['daya'] ;?></span>
+                        </div>
+                        <div>
+                            Estimasi Biaya:
+                            <span
+                                class="badge badge-success mb-2"><?= 'Rp.' . number_format($pengajuan['harga']) . ',-'; ?></span>
                         </div>
                         <?php endif; ?>
                         <table class="table table-bordered" width="100%" cellspacing="0">

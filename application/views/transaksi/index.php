@@ -47,14 +47,32 @@
                                     <td><?= date('d F Y', $data['tgl_pengajuan']); ?></td>
                                     <td><?php if ($data['status'] == 0) {
                                                 echo '<span class="badge badge-warning mb-2">Menunggu Verifikasi</span>';
-                                            } if ($data['status'] == 1) {
+                                            } elseif ($data['status'] == 1) {
                                                 echo '<span class="badge badge-danger mb-2">Ditolak</span>';
                                             }  elseif ($data['status'] == 2) {
                                                 echo '<span class="badge badge-success mb-2">Diverifikasi</span>';
+                                            } elseif ($data['status'] == 3) {
+                                                echo '<span class="badge badge-success mb-2">Proses Survey</span>';
+                                            }  elseif ($data['status'] == 4) {
+                                                echo '<span class="badge badge-success mb-2">Dibayar dan Proses Pemasangan</span>';
+                                            }  elseif ($data['status'] == 5) {
+                                                echo '<span class="badge badge-success mb-2">Pemasangan Selesai</span>';
                                             } ?></td>
                                     <td>
-                                        <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>/<?= $data['user_id']?>"
-                                            class="badge badge-success">Verifikasi</a>
+                                        <?php if ($data['status'] == 2) {
+                                                echo '';
+                                            }  elseif ($data['status'] == 3) {
+                                                echo '';
+                                            }  elseif ($data['status'] == 4) {
+                                                echo '';
+                                            }  elseif ($data['status'] == 5) {
+                                                echo '';
+                                            }  else {
+                                                echo '<a href="'.base_url('transaksi/verifikasi/').''.$data['id'].'/'.$data['user_id'].'"                                           class="badge badge-success">Verifikasi</a>';
+                                            } ?>
+
+                                        <!-- <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>/<?= $data['user_id']?>"
+                                            class="badge badge-success">Verifikasi</a> -->
                                         <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>"
                                             class="badge badge-danger tombol-hapus">Tolak</a>
 

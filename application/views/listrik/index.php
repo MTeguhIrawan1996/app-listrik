@@ -21,6 +21,7 @@
                                     <th width="4%">#</th>
                                     <th>Produk Layanan</th>
                                     <th>Daya</th>
+                                    <th>Biaya</th>
                                     <th width="17%">Action</th>
                                 </tr>
                             </thead>
@@ -31,6 +32,7 @@
                                     <td><?= $i; ?></td>
                                     <td><?= $data['produk_layanan']; ?></td>
                                     <td><?= $data['daya']; ?></td>
+                                    <td><?= 'Rp.' . number_format($data['harga']) . ',-'; ?></td>
 
                                     <td>
                                         <a href="<?= base_url('listrik/ubahlistrik/'); ?><?= $data['id']; ?>"
@@ -84,6 +86,12 @@
                         <input type="number" class="form-control" id="daya" name="daya"
                             value="<?= set_value('daya'); ?>">
                         <?= form_error('daya', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Biaya</label>
+                        <input type="number" class="form-control" id="harga" name="harga"
+                            value="<?= set_value('harga'); ?>">
+                        <?= form_error('harga', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
             </div>
             <div class="modal-footer">

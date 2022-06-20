@@ -10,7 +10,7 @@ class Transaksi extends CI_Controller
         $this->load->model('Pengajuan_model', 'pengajuan');
         $this->load->model('Surat_model', 'surat');
         $this->load->model('Petugas_model', 'petugas');
-        
+        $this->load->model('Pembayaran_model', 'pembayaran');
     }
 
     public function index()
@@ -32,6 +32,14 @@ class Transaksi extends CI_Controller
         $this->pengajuan->updateStatusVerifikasi($id);
         $this->pengajuan->kirimDataTrackingVerifikasi($user_id);
         $this->session->set_flashdata('message', 'Verifikasi berhasil');
+        redirect('transaksi');
+    }
+
+    public function selesaiPemasangan($id,$user_id)
+    {
+        $this->pengajuan->updateStatusSelesai($id);
+        $this->pengajuan->kirimDataTrackingSelesai($user_id);
+        $this->session->set_flashdata('message', 'Pemasangan selesai');
         redirect('transaksi');
     }
 
@@ -102,11 +110,75 @@ class Transaksi extends CI_Controller
         $this->load->view('templates/footer');
         } else {
             $this->surat->tambahDataSurat();
+            $this->pengajuan->updateStatusPengajuanSurvey();
             $this->surat->kirimDataTrackingSurvey();
             $this->session->set_flashdata('message', 'Surat Tugas Berhasil dibuat');
             redirect('transaksi/surattugas');
         }
     }
+
+    public function aksi()
+    {
+        $this->surat->kirimDataAksi();
+        $this->session->set_flashdata('message', 'Aksi Berhasil dikirim');
+        redirect('transaksi/surattugas');
+    }
+
+    // PEMBAYARAN
+    public function pembayaran()
+    {
+        $data['title'] = 'Transaksi';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pembayaran'] = $this->pembayaran->getPembayaranAll();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('transaksi/pembayaran', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function formPembayaran()
+    {
+        $data['title'] = 'Transaksi';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['kode_pembayaran'] = $this->pembayaran->getKodePembayaran();
+        $data['pengajuan'] = $this->pengajuan->getDataPengajuanVerify();
+        $this->form_validation->set_rules('kode_pembayaran', 'Kode Pembayaran', 'required|trim|is_unique[pembayaran.kode_pembayaran]', ['is_unique' => 'Kode pembayaran Sudah ada']);
+        $this->form_validation->set_rules('ajukan_id', 'Kode Pengajuan', 'required|trim|is_unique[pembayaran.ajukan_id]', ['is_unique' => 'Sudah ada pembayaran untuk kode pengajuan tersebut']);
+        $this->form_validation->set_rules('biaya_lain', 'Biaya Lain', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('transaksi/form-pembayaran', $data);
+        $this->load->view('templates/footer');
+        } else {
+            $this->pembayaran->tambahDataPembayaran();
+            
+            // $this->pembayaran->kirimDataTrackingPembayaran();
+            $this->session->set_flashdata('message', 'Data Pembayaran Berhasil diinput');
+            redirect('transaksi/pembayaran');
+        }
+    }
+
+    public function hapusPembayaran($id)
+    {
+        $this->pembayaran->hapusDataPembayaran($id);
+        $this->session->set_flashdata('message', 'Data pembayaran berhasil dihapus!');
+        redirect('transaksi/pembayaran');
+    }
+
+    public function bayar($id,$user_id)
+    {
+        $this->pembayaran->updateStatusPembayaran($id);
+        $this->pembayaran->updateStatusPengajuan($user_id);
+        $this->pembayaran->kirimDataTrackingPembayaran($user_id);
+        $this->session->set_flashdata('message', 'Pembayaran berhasil');
+        redirect('transaksi/pembayaran');
+    }
+
 
     //AJAX
     public function getUserAjax()

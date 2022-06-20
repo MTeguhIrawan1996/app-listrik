@@ -25,6 +25,14 @@
                                 <?= form_error('daya', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="harga" class="col-md-3 col-form-label">Biaya</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="harga" id="harga"
+                                    value="<?= $listrik['harga']; ?>">
+                                <?= form_error('harga', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-9">
                                 <button type="submit" class="btn btn-primary">Ubah</button>

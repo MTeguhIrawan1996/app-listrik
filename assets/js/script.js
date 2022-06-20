@@ -72,6 +72,7 @@ function autofill() {
 			$("#provinsi").val(data.provinsi);
 			$("#produk_layanan").val(data.produk_layanan);
 			$("#daya").val(data.daya);
+			$("#biaya").val(data.harga);
 		},
 	});
 
