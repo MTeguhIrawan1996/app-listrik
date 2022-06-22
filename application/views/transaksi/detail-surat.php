@@ -171,10 +171,18 @@
             </div>
             <div class="modal-body">
                 <form action="<?= base_url('userpetugas/aksi') ?>" method="post">
-                    <input type="text" name="id" value="<?= $surat['id']; ?>" hidden>
-                    <div class="form-group">
-                        <textarea class="form-control" id="ket" name="ket" style="width: 300px" required></textarea>
-                        <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <div class="form-group row">
+                        <input type="text" class="form-control" name="id" value="<?= $surat['id']; ?>" hidden>
+                        <label for="ket" class="col-md-3 col-form-label">Hasil Tugas</label>
+                        <div class="col-sm-9">
+                            <select name="ket" id="ket" class="form-control" style="width: 300px">
+                                <option value="">Pilih Data</option>
+                                <option value="BISA DILAKUKAN PEMASANGAN">Dapat dilakukan pemasangan</option>
+                                <option value="TIDAK BISA DILAKUKAN PEMASANGAN">Tidak bisa dilakukan pemasangan</option>
+                                <option value="PEMASANGAN SELESAI">Pemasangan Selesai</option>
+                            </select>
+                            <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -197,10 +205,18 @@
             </div>
             <div class="modal-body">
                 <form action="<?= base_url('transaksi/aksi') ?>" method="post">
-                    <input type="text" name="id" value="<?= $surat['id']; ?>" hidden>
-                    <div class="form-group">
-                        <textarea class="form-control" id="ket" name="ket" style="width: 300px" required></textarea>
-                        <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <div class="form-group row">
+                        <input type="text" class="form-control" name="id" value="<?= $surat['id']; ?>" hidden>
+                        <label for="ket" class="col-md-2 col-form-label">Feedback</label>
+                        <div class="col-sm-10">
+                            <select name="ket" id="ket" class="form-control" style="width: 300px">
+                                <option value="">Pilih Data</option>
+                                <option value="LAKUKAN SURVEY">Lakukan Survey</option>
+                                <option value="Lakukan PEMASANGAN">Lakukan Pemasangan</option>
+                                <option value="PEMASANGAN SELESAI">Pemasangan Selesai</option>
+                            </select>
+                            <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

@@ -40,6 +40,17 @@ class Pengajuan_model extends CI_model
 
     }
 
+    public function kirimDataTrackingTolak($user_id)
+    {
+			$data = [
+                'ajukan_user_id' => $user_id,
+				'ket' => 'Ditolak',
+                'tgl_tracking' => date('Y-m-d')
+			];
+			$this->db->insert('tracking', $data);
+
+    }
+
     public function getKodePengajuan()
     {
         $id = [

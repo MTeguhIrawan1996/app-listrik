@@ -68,6 +68,29 @@
                 </div>
             </div>
     </li>
+    <?php if ($title == ('Laporan')) : ?>
+    <li class="nav-item active">
+        <?php else : ?>
+    <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link pb-0 collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+            aria-controls="collapse3">
+            <i class="fas fa-fw fa-user-friends"></i>
+            <span>Laporan</span>
+        </a>
+        <?php if ($title == ('Laporan')) : ?>
+        <div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordionSidebar">
+            <?php else : ?>
+            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionSidebar">
+                <?php endif; ?>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?= base_url('laporan'); ?>">Laporan Pemasangan</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/surattugas'); ?>">Laporan Surat Tugas</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/datapelanggan'); ?>">Laporan Data Pelanggan</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/hasilsurvey'); ?>">Laporan Hasil Survey</a>
+                </div>
+            </div>
+    </li>
     <!-- Petugas -->
     <?php elseif ($role_id == 2) : ?>
     <?php if ($title == ('Halaman Petugas')) : ?>

@@ -43,9 +43,10 @@ class Transaksi extends CI_Controller
         redirect('transaksi');
     }
 
-    public function hapus($id)
+    public function hapus($id,$user_id)
     {
         $this->pengajuan->hapusDataPengajuan($id);
+        $this->pengajuan->kirimDataTrackingTolak($user_id);
         $this->session->set_flashdata('message', 'Data pengajuan berhasil ditolak');
         redirect('transaksi');
     }

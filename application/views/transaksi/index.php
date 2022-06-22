@@ -73,7 +73,7 @@
 
                                         <!-- <a href=" <?=base_url('transaksi/verifikasi/'); ?><?= $data['id']?>/<?= $data['user_id']?>"
                                             class="badge badge-success">Verifikasi</a> -->
-                                        <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>"
+                                        <a href="<?= base_url('transaksi/hapus/'); ?><?= $data['id']; ?>/<?= $data['user_id']?>"
                                             class="badge badge-danger tombol-hapus">Tolak</a>
 
                                     </td>
