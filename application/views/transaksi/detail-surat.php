@@ -130,7 +130,7 @@
                 </table>
 
                 <div class="col-sm-0">
-                    <button type="submit" class="btn btn-warning">Cetak</button>
+                    <!-- <button type="submit" class="btn btn-warning">Cetak</button> -->
                     <?php
                     $role_id = $this->session->userdata('role_id');
                     

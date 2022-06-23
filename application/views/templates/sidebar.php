@@ -88,6 +88,11 @@
                     <a class="collapse-item" href="<?= base_url('laporan/surattugas'); ?>">Laporan Surat Tugas</a>
                     <a class="collapse-item" href="<?= base_url('laporan/datapelanggan'); ?>">Laporan Data Pelanggan</a>
                     <a class="collapse-item" href="<?= base_url('laporan/hasilsurvey'); ?>">Laporan Hasil Survey</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/tracking'); ?>">Laporan Tracking</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/pembayaran'); ?>">Laporan Pembayaran</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/pembayaranstatus'); ?>">Laporan Pembayaran By
+                        <br>status</a>
+                    <a class="collapse-item" href="<?= base_url('laporan/kas'); ?>">Laporan Rekap Kas</a>
                 </div>
             </div>
     </li>

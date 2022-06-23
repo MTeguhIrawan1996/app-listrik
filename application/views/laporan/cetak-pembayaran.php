@@ -25,13 +25,13 @@
             <div style="font-size: 10px;">Jalan S.Parman Gg Kalimantan II Kuala kapuas Email:dimass@gmail.com</div>
         </div>
         <header class="clearfix">
-            <h1>Laporan Surat Tugas</h1>
+            <h1>Laporan Pembayaran</h1>
             <div class="kiri" style="text-align:left;">
                 <div>Kuala Kapuas,<?= date('d-m-Y'); ?> </div>
                 <div>Print Oleh,<?= $user['nama']; ?> </div>
             </div>
             <div class="kanan" style="text-align:right;">
-                <div>Data Surat Tugas</div>
+                <div>Data Pembayaran</div>
                 <div>Periode
                     <?= date('d-m-Y', strtotime($tglawal)) ?> Sd <?= date('d-m-Y', strtotime($tglakhir)) ?>
                 </div>
@@ -42,23 +42,29 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Surat</th>
-                        <th>Nama Petugas</th>
+                        <th>Kode Pembayaran</th>
                         <th>Kode Pengajuan</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal surat</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Biaya Lain Lain</th>
+                        <th>Total</th>
+                        <th>status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($laporan as $data) : ?>
                     <tr>
-                        <td align="center"><?= $i; ?></td>
-                        <td align="center"><?= $data['kode_surat']; ?></td>
-                        <td align="center"><?= $data['nama']; ?></td>
-                        <td align="center"><?= $data['kode_pengajuan']; ?></td>
-                        <td align="center"><?= $data['ket']; ?></td>
-                        <td align="center"><?= date('d F Y', $data['tgl_surat']); ?></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $data['kode_pembayaran']; ?></td>
+                        <td><?= $data['kode_pengajuan']; ?></td>
+                        <td><?= date('d F Y', strtotime($data['tgl_pembayaran'])); ?></td>
+                        <td><?= 'Rp.' . number_format($data['harga_lain']) . ',-'; ?></td>
+                        <td><?= 'Rp.' . number_format($data['total']) . ',-'; ?></td>
+                        <td><?php if ($data['status'] == 0) {
+                                echo '<span class="badge badge-warning mb-2">Belum Lunas</span>';
+                            } elseif ($data['status'] == 1) {
+                                echo '<span class="badge badge-success mb-2">Lunas</span>';
+                            } ?></td>
 
                     </tr>
                     <?php $i++; ?>

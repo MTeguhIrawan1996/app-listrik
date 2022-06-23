@@ -214,4 +214,97 @@ $(function () {
 			},
 		});
 	});
+
+	$(".tombol-laporan-tracking").on("click", function () {
+		var ajukan_id = $("#ajukan_id").val();
+		$("#dataTable").dataTable({
+			processing: true,
+			serverSide: true,
+			ordering: true,
+			paging: false,
+			destroy: true,
+			info: false,
+			searching: false,
+			ajax: {
+				url: "gettrackingajax",
+				data: {
+					ajukan_id: ajukan_id,
+				},
+				method: "post",
+				dataType: "json",
+			},
+		});
+	});
+
+	$(".tombol-laporan-pembayaran").on("click", function () {
+		var tgl_awal = $("#tgl_awal").val();
+		var tgl_akhir = $("#tgl_akhir").val();
+		$("#dataTable").dataTable({
+			processing: true,
+			serverSide: true,
+			ordering: true,
+			paging: false,
+			destroy: true,
+			info: false,
+			searching: false,
+			ajax: {
+				url: "getpembayaranajax",
+				data: {
+					tgl_awal: tgl_awal,
+					tgl_akhir: tgl_akhir,
+				},
+				method: "post",
+				dataType: "json",
+			},
+			columnDefs: [
+				{
+					targets: [6],
+					render: function (data, type, row, meta) {
+						if (meta.col == 6) {
+							if (data == 1) {
+								return '<span class="badge badge-success mb-2">Lunas</span>';
+							} else if (data == 0) {
+								return '<span class="badge badge-danger mb-2">Belum Lunas</span>';
+							}
+						}
+					},
+				},
+			],
+		});
+	});
+
+	$(".tombol-laporan-pembayaranstatus").on("click", function () {
+		var status = $("#status").val();
+		$("#dataTable").dataTable({
+			processing: true,
+			serverSide: true,
+			ordering: true,
+			paging: false,
+			destroy: true,
+			info: false,
+			searching: false,
+			ajax: {
+				url: "getpembayaranstatusajax",
+				data: {
+					status: status,
+				},
+				method: "post",
+				dataType: "json",
+			},
+			columnDefs: [
+				{
+					targets: [6],
+					render: function (data, type, row, meta) {
+						if (meta.col == 6) {
+							if (data == 1) {
+								return '<span class="badge badge-success mb-2">Lunas</span>';
+							} else if (data == 0) {
+								return '<span class="badge badge-danger mb-2">Belum Lunas</span>';
+							}
+						}
+					},
+				},
+			],
+		});
+	});
 });

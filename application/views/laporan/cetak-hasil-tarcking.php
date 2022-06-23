@@ -25,15 +25,15 @@
             <div style="font-size: 10px;">Jalan S.Parman Gg Kalimantan II Kuala kapuas Email:dimass@gmail.com</div>
         </div>
         <header class="clearfix">
-            <h1>Laporan Surat Tugas</h1>
+            <h1>Laporan Hasil Tracking</h1>
             <div class="kiri" style="text-align:left;">
                 <div>Kuala Kapuas,<?= date('d-m-Y'); ?> </div>
                 <div>Print Oleh,<?= $user['nama']; ?> </div>
             </div>
             <div class="kanan" style="text-align:right;">
-                <div>Data Surat Tugas</div>
-                <div>Periode
-                    <?= date('d-m-Y', strtotime($tglawal)) ?> Sd <?= date('d-m-Y', strtotime($tglakhir)) ?>
+                <div>Data Hasil Tracking</div>
+                <div>Nama :
+                    <?= $pelanggan['nama']; ?>
                 </div>
             </div>
         </header>
@@ -42,23 +42,21 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Surat</th>
-                        <th>Nama Petugas</th>
                         <th>Kode Pengajuan</th>
+
                         <th>Keterangan</th>
-                        <th>Tanggal surat</th>
+                        <th>Tanggal</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($laporan as $data) : ?>
                     <tr>
-                        <td align="center"><?= $i; ?></td>
-                        <td align="center"><?= $data['kode_surat']; ?></td>
-                        <td align="center"><?= $data['nama']; ?></td>
-                        <td align="center"><?= $data['kode_pengajuan']; ?></td>
-                        <td align="center"><?= $data['ket']; ?></td>
-                        <td align="center"><?= date('d F Y', $data['tgl_surat']); ?></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $data['kode_pengajuan']; ?></td>
+                        <td><?= $data['ket']; ?></td>
+                        <td><?= date('d F Y', strtotime($data['tgl_tracking'])); ?></td>
 
                     </tr>
                     <?php $i++; ?>

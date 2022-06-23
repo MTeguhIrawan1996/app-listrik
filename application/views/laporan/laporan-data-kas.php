@@ -24,46 +24,13 @@
                         </div>
                         <div class="col-sm-0">
                             <button type="submit" class="btn btn-warning">Cetak</button>
-                            <button type="button" class="btn btn-primary tombol-laporan">Proses</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-lg">
-            <div class="validation-errors" data-validationerrors="<?= validation_errors(); ?>"></div>
-            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Laporan Pengajuan Pemasangan</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Kode Pengajuan</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Produk Layanan</th>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- /.container-fluid -->
 

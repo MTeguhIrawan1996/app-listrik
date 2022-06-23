@@ -15,7 +15,7 @@
 <body>
     <header class="clearfix">
         <div style="text-align: center; font-weight: bold;">
-            <img src="<?= base_url('assets/img/pln.png') ?>" style="height: 110px" ; width="auto">
+            <<img src="<?= base_url('assets/img/pln.png') ?>" style="height: 110px" ; width="auto">
         </div>
         <br>
         <div id="kop" class="clearfix">
@@ -25,13 +25,13 @@
             <div style="font-size: 10px;">Jalan S.Parman Gg Kalimantan II Kuala kapuas Email:dimass@gmail.com</div>
         </div>
         <header class="clearfix">
-            <h1>Laporan Surat Tugas</h1>
+            <h1>Laporan Rekap Kas</h1>
             <div class="kiri" style="text-align:left;">
                 <div>Kuala Kapuas,<?= date('d-m-Y'); ?> </div>
                 <div>Print Oleh,<?= $user['nama']; ?> </div>
             </div>
             <div class="kanan" style="text-align:right;">
-                <div>Data Surat Tugas</div>
+                <div>Data Rekap Kas</div>
                 <div>Periode
                     <?= date('d-m-Y', strtotime($tglawal)) ?> Sd <?= date('d-m-Y', strtotime($tglakhir)) ?>
                 </div>
@@ -42,30 +42,28 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Surat</th>
-                        <th>Nama Petugas</th>
-                        <th>Kode Pengajuan</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal surat</th>
+                        <th>Kode Pembayaran</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Biaya Lain Lain</th>
+                        <th>Total</th>
                     </tr>
-                </thead>
-                <tbody>
+
                     <?php $i = 1; ?>
                     <?php foreach ($laporan as $data) : ?>
                     <tr>
                         <td align="center"><?= $i; ?></td>
-                        <td align="center"><?= $data['kode_surat']; ?></td>
-                        <td align="center"><?= $data['nama']; ?></td>
-                        <td align="center"><?= $data['kode_pengajuan']; ?></td>
-                        <td align="center"><?= $data['ket']; ?></td>
-                        <td align="center"><?= date('d F Y', $data['tgl_surat']); ?></td>
-
+                        <td align="center"><?= $data['kode_pembayaran']; ?></td>
+                        <td align="center"><?= date('d-m-Y', strtotime($data['tgl_pembayaran'])) ?></td>
+                        <td align="center"><?= 'Rp.' . number_format($data['harga_lain']) . ',-'; ?></td>
+                        <td align="center"><?= 'Rp.' . number_format($data['total']) . ',-'; ?></td>
                     </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>
+                    <tr>
+                        <th colspan="4" style="text-align:center;    font-size:20px">Grand Total</th>
+                        <th style="text-align:right; font-size:17px"><?= 'Rp.' . number_format($jumlah) . ',-'; ?></th>
 
-                </tbody>
-
+                    </tr>
             </table>
             <br>
             <br>

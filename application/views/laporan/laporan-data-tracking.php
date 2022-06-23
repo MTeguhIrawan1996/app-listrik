@@ -2,30 +2,29 @@
 <div class="container-fluid">
     <div class="card shadow border-left-primary">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Status Pengajuan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Pilih Pelanggan</h6>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
                     <form target="_blank" action="" method="post">
                         <div class="form-group row">
-                            <label for="status" class="col-md-2 col-form-label">Status</label>
-                            <div class="col-sm-10">
-                                <select name="status" id="status" class="form-control" style="width: 300px">
+                            <label for="ajukan_id" class="col-md-4 col-form-label">Kode Pengajuan</label>
+                            <div class="col-sm-8">
+                                <select name="ajukan_id" id="ajukan_id" class="form-control" style="width: 300px">
                                     <option value="">Pilih Data</option>
-                                    <option value="0">Menunggu Verifikasi</option>
-                                    <option value="1">Ditolak</option>
-                                    <option value="2">Diverifikasi</option>
-                                    <option value="3">Proses Survey</option>
-                                    <option value="4">Proses Pemasangan</option>
-                                    <option value="5">Pemasangan Selesai</option>
+                                    <?php foreach ($pengajuan as $data) : ?>
+                                    <option value="<?= $data['user_id'];?>">
+                                        <?= $data['kode_pengajuan'];?> || <?= $data['nama'];?>
+                                    </option>
+                                    <?php endforeach; ?>
                                 </select>
-                                <?= form_error('status', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <?= form_error('ajukan_id', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="col-sm-0">
                             <button type="submit" class="btn btn-warning">Cetak</button>
-                            <button type="button" class="btn btn-primary tombol-laporan-pelanggan">Proses</button>
+                            <button type="button" class="btn btn-primary tombol-laporan-tracking">Proses</button>
                         </div>
                     </form>
                 </div>
@@ -40,7 +39,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Laporan Data Pelanggan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Laporan Data Tracking</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,14 +47,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>No Telepon</th>
-                                    <th>Alamat</th>
-                                    <th>kelurahan</th>
-                                    <th>kecamatan</th>
-                                    <th>Provinsi</th>
-                                    <th>Status</th>
+                                    <th>Kode Pengajuan</th>
+                                    <th>Keterangan</th>
+                                    <th>Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
