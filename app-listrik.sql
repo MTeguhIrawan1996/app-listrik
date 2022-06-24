@@ -27,14 +27,12 @@ CREATE TABLE IF NOT EXISTS `ajukan_pemasangan` (
   KEY `FK_ajukan_pemasangan_listrik` (`listrik_id`),
   CONSTRAINT `FK_ajukan_pemasangan_listrik` FOREIGN KEY (`listrik_id`) REFERENCES `listrik` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ajukan_pemasangan_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4;
 
 -- Membuang data untuk tabel app-listrik.ajukan_pemasangan: ~1 rows (lebih kurang)
 /*!40000 ALTER TABLE `ajukan_pemasangan` DISABLE KEYS */;
 REPLACE INTO `ajukan_pemasangan` (`id`, `kode_pengajuan`, `user_id`, `listrik_id`, `tgl_pengajuan`, `status`, `tgl_input_data`, `delete`) VALUES
-	(47, 'LSTRK2006220001', 13, 7, 1655739054, 5, '2022-06-20', 1),
-	(48, 'LSTRK2106220001', 14, 8, 1655819366, 5, '2022-06-21', 1),
-	(49, 'LSTRK2206220001', 7, 4, 1655890137, 1, '2022-06-22', 1);
+	(52, 'LSTRK2406220001', 18, 4, 1656077380, 5, '2022-06-24', 1);
 /*!40000 ALTER TABLE `ajukan_pemasangan` ENABLE KEYS */;
 
 -- membuang struktur untuk table app-listrik.listrik
@@ -51,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `listrik` (
 /*!40000 ALTER TABLE `listrik` DISABLE KEYS */;
 REPLACE INTO `listrik` (`id`, `daya`, `produk_layanan`, `harga`, `delete`) VALUES
 	(4, '450', 'Prabayar', '500000', 1),
-	(7, '900 V', 'Prabayar', '1000000', 1),
+	(7, '900', 'Prabayar', '1000000', 1),
 	(8, '1200', 'Prabayar', '1500000', 1);
 /*!40000 ALTER TABLE `listrik` ENABLE KEYS */;
 
@@ -60,20 +58,22 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kode_pembayaran` varchar(255) DEFAULT NULL,
   `ajukan_id` int(15) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `tgl_pembayaran` date DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   `harga_lain` varchar(50) DEFAULT NULL,
   `total` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_pembayaran_ajukan_pemasangan` (`ajukan_id`),
-  CONSTRAINT `FK_pembayaran_ajukan_pemasangan` FOREIGN KEY (`ajukan_id`) REFERENCES `ajukan_pemasangan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+  KEY `FK_pembayaran_user` (`user_id`),
+  CONSTRAINT `FK_pembayaran_ajukan_pemasangan` FOREIGN KEY (`ajukan_id`) REFERENCES `ajukan_pemasangan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_pembayaran_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel app-listrik.pembayaran: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel app-listrik.pembayaran: ~1 rows (lebih kurang)
 /*!40000 ALTER TABLE `pembayaran` DISABLE KEYS */;
-REPLACE INTO `pembayaran` (`id`, `kode_pembayaran`, `ajukan_id`, `tgl_pembayaran`, `status`, `harga_lain`, `total`) VALUES
-	(6, 'TRK2006220001', 47, '2022-06-20', 1, '400000', '1400000'),
-	(7, 'TRK2106220001', 48, '2022-06-21', 1, '200000', '1700000');
+REPLACE INTO `pembayaran` (`id`, `kode_pembayaran`, `ajukan_id`, `user_id`, `tgl_pembayaran`, `status`, `harga_lain`, `total`) VALUES
+	(1, 'TRK2406220001', 52, 18, '2022-06-24', 1, '100000', '600000');
 /*!40000 ALTER TABLE `pembayaran` ENABLE KEYS */;
 
 -- membuang struktur untuk table app-listrik.surat_tugas
@@ -90,14 +90,12 @@ CREATE TABLE IF NOT EXISTS `surat_tugas` (
   KEY `FK_surat_tugas_ajukan_pemasangan` (`ajukan_id`),
   CONSTRAINT `FK_surat_tugas_ajukan_pemasangan` FOREIGN KEY (`ajukan_id`) REFERENCES `ajukan_pemasangan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_surat_tugas_user` FOREIGN KEY (`petugas_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel app-listrik.surat_tugas: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel app-listrik.surat_tugas: ~1 rows (lebih kurang)
 /*!40000 ALTER TABLE `surat_tugas` DISABLE KEYS */;
 REPLACE INTO `surat_tugas` (`id`, `kode_surat`, `petugas_id`, `ajukan_id`, `ket`, `tgl_input_surat`, `tgl_surat`) VALUES
-	(15, 'SRT/20/06/22/0001', 4, 47, 'PEMASANGAN SELESAI', '2022-06-20', 1655739101),
-	(16, 'SRT/21/06/22/0001', 4, 48, 'PEMASANGAN SELESAI', '2022-06-21', 1655819404),
-	(17, 'SRT/22/06/22/0001', 4, 49, 'TIDAK BISA DILAKUKAN PEMASANGAN', '2022-06-22', 1655890254);
+	(1, 'SRT/24/06/22/0001', 19, 52, 'PEMASANGAN SELESAI', '2022-06-24', 1656077441);
 /*!40000 ALTER TABLE `surat_tugas` ENABLE KEYS */;
 
 -- membuang struktur untuk table app-listrik.tracking
@@ -109,25 +107,16 @@ CREATE TABLE IF NOT EXISTS `tracking` (
   PRIMARY KEY (`id`),
   KEY `FK_tarcking_ajukan_pemasangan` (`ajukan_user_id`) USING BTREE,
   CONSTRAINT `FK_tarcking_ajukan_pemasangan` FOREIGN KEY (`ajukan_user_id`) REFERENCES `ajukan_pemasangan` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel app-listrik.tracking: ~9 rows (lebih kurang)
+-- Membuang data untuk tabel app-listrik.tracking: ~4 rows (lebih kurang)
 /*!40000 ALTER TABLE `tracking` DISABLE KEYS */;
 REPLACE INTO `tracking` (`id`, `ajukan_user_id`, `ket`, `tgl_tracking`) VALUES
-	(30, 13, 'Diajukan', '2022-06-20'),
-	(31, 13, 'Disetujui', '2022-06-20'),
-	(32, 13, 'Proses Survey Oleh Petugas', '2022-06-20'),
-	(33, 13, 'Sudah dibayar dan proses pemasangan', '2022-06-20'),
-	(34, 13, 'Pemasangan Selesai', '2022-06-20'),
-	(35, 14, 'Diajukan', '2022-06-21'),
-	(36, 14, 'Disetujui', '2022-06-21'),
-	(37, 14, 'Proses Survey Oleh Petugas', '2022-06-21'),
-	(38, 14, 'Sudah dibayar dan proses pemasangan', '2022-06-21'),
-	(39, 14, 'Pemasangan Selesai', '2022-06-21'),
-	(40, 7, 'Diajukan', '2022-06-22'),
-	(41, 7, 'Disetujui', '2022-06-22'),
-	(42, 7, 'Proses Survey Oleh Petugas', '2022-06-22'),
-	(43, 7, 'Ditolak', '2022-06-22');
+	(1, 18, 'Diajukan', '2022-06-24'),
+	(2, 18, 'Disetujui', '2022-06-24'),
+	(3, 18, 'Proses Survey Oleh Petugas', '2022-06-24'),
+	(4, 18, 'Sudah dibayar dan proses pemasangan', '2022-06-24'),
+	(5, 18, 'Pemasangan Selesai', '2022-06-24');
 /*!40000 ALTER TABLE `tracking` ENABLE KEYS */;
 
 -- membuang struktur untuk table app-listrik.user
@@ -151,16 +140,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_user_role` (`role_id`),
   CONSTRAINT `FK_user_user_role` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel app-listrik.user: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel app-listrik.user: ~3 rows (lebih kurang)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 REPLACE INTO `user` (`id`, `username`, `nik`, `nama`, `password`, `alamat`, `kelurahan`, `kecamatan`, `provinsi`, `produk_id`, `no_hp`, `status_pelanggan`, `role_id`, `is_active`, `date_created`, `delete`) VALUES
 	(3, 'admin', '6203011906970002', 'Admin', '$2y$10$NK7.Urm/zsrKjMK8Dxr41eVJNVCeAovVVN5N82FP1F7d4sxU1mjty', NULL, NULL, NULL, NULL, NULL, '08123', NULL, 1, 1, 1654763875, 1),
-	(4, 'petugas', '321', 'Petugas', '$2y$10$oOeRVgjjVChWq3zCq3GJOulpHeugL68bmNllL5DblIdFro3aNwV16', NULL, NULL, NULL, NULL, NULL, '321', NULL, 2, 1, 1654845446, 1),
-	(7, 'coba', '1010', 'Coba', '$2y$10$WC7Xs35ykN/Hj16ENEGgT.qDuwoQDSvuJRWIzC9p2AUEsVAWFp2Ru', 'Kapuas', 'Selat', 'Selat Tengah', 'Kalteng', NULL, '081234', NULL, 3, 1, 1654936348, 1),
-	(13, 'bowo', '6203011906970003', 'bowo', '$2y$10$KUlegTHwSc03N0XaeHaslejngMF4Ynz.FPvbY0AG9/nCvUdfTSbbG', 'Banjarmasin', 'BJM', 'bjm', 'KALSEL', NULL, '08123333', NULL, 3, 1, 1655058328, 1),
-	(14, 'dimas', '4242434643634643', 'Dimas', '$2y$10$UMev5j9g5Fjz64Pzf9ud7eBPlzzzDXV/C1XEG5/0x5hcS782qjSWO', 'kapuas', 'kapuas', 'kapuas', 'kalteng', NULL, '4645342424', NULL, 3, 1, 1655373824, 1);
+	(18, 'user', '621111', 'User Coba', '$2y$10$wVU3liUrx3b/slXFGEitC.e84vck0xqjl7VBfXhqf/hipfKQq1qhi', 'Jl.Seroja', 'Selat', 'SELAT TENGAH', 'KALTENG', NULL, '08111', NULL, 3, 1, 1656076939, 1),
+	(19, 'petugas', '6203011906970003', 'Petugas', '$2y$10$aQoNfUz5eQwLwivKCW3BPOLc1QZGN4sUUMJGH/ipJToI3iMFeam7W', NULL, NULL, NULL, NULL, NULL, '099889898', NULL, 2, 1, 1656076975, 1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- membuang struktur untuk table app-listrik.user_access_menu

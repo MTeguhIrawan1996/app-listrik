@@ -149,7 +149,7 @@ class Laporan_model extends CI_model
     // Pembayaran
     public function getPembayaranByTgl($tgl_awal, $tgl_akhir)
     {
-        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,user_id');
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
         $this->db->from('pembayaran');
         $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
         $this->db->where('tgl_pembayaran >=', $tgl_awal);
@@ -160,7 +160,7 @@ class Laporan_model extends CI_model
 
     public function getPembayaranAjaxByTgl($tgl_awal, $tgl_akhir)
     {
-        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,user_id');
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
         $this->db->from('pembayaran');
         $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
         $this->db->where('tgl_pembayaran >=', $tgl_awal);
@@ -173,7 +173,7 @@ class Laporan_model extends CI_model
 
     public function getPembayaranByStatus($status)
     {
-        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,user_id');
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
         $this->db->from('pembayaran');
         $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
         $this->db->where('pembayaran.status', $status);
@@ -183,7 +183,7 @@ class Laporan_model extends CI_model
 
     public function getPembayaranStatusAjax($status)
     {
-        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,user_id');
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
         $this->db->from('pembayaran');
         $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
         $this->db->where('pembayaran.status', $status);

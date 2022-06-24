@@ -22,7 +22,7 @@ class Pembayaran_model extends CI_model
     public function getPembayaranAll()
     {
 
-        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,user_id');
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
         $this->db->from('pembayaran');
         $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
         $query = $this->db->get();
@@ -38,6 +38,7 @@ class Pembayaran_model extends CI_model
         $data = [
                 'kode_pembayaran' => htmlspecialchars($this->input->post('kode_pembayaran', true)),
                 'ajukan_id' => htmlspecialchars($this->input->post('ajukan_id', true)),
+                'user_id' => htmlspecialchars($this->input->post('pelanggan_id', true)),
 				'status' => 0,
                 'harga_lain' => htmlspecialchars($this->input->post('biaya_lain', true)),
                 'total' => $total,
@@ -75,5 +76,18 @@ class Pembayaran_model extends CI_model
 				'tgl_tracking' => date('Y-m-d'),
 			];
 			$this->db->insert('tracking', $data);
+    }
+
+    public function getDataPembayaranByID()
+    {
+        $data = [
+            'pembayaran.user_id' => $this->session->userdata('id')
+        ];
+        $this->db->select('pembayaran.id,kode_pembayaran,kode_pengajuan,harga_lain,total,tgl_pembayaran,pembayaran.status,ajukan_pemasangan.user_id');
+        $this->db->from('pembayaran');
+        $this->db->join('ajukan_pemasangan', 'pembayaran.ajukan_id=ajukan_pemasangan.id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 }

@@ -143,14 +143,23 @@
                     } else {
                         echo '';
                     } ?>
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#formModal2">Aksi</button>
+                    <?php if ($pengajuan['status'] == 5) {
+                        echo '';
+                    } else {
+                        echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#formModal2">Aksi</button>';
+                    } ?>
+
                     <a href="<?= base_url('transaksi/surattugas'); ?>" class="btn btn-danger">Kembali</a>
 
                     <!-- Petugas -->
                     <?php else : ?>
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#formModal1">Aksi</button>
+                    <?php if ($pengajuan['status'] == 5) {
+                        echo '';
+                    } else {
+                        echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#formModal1">Aksi</button>';
+                    } ?>
                     <a href="<?= base_url('userpetugas/surattugas'); ?>" class="btn btn-danger">Kembali</a>
                     <?php endif; ?>
                 </div>
@@ -212,8 +221,8 @@
                             <select name="ket" id="ket" class="form-control" style="width: 300px">
                                 <option value="">Pilih Data</option>
                                 <option value="LAKUKAN SURVEY">Lakukan Survey</option>
-                                <option value="Lakukan PEMASANGAN">Lakukan Pemasangan</option>
-                                <option value="PEMASANGAN SELESAI">Pemasangan Selesai</option>
+                                <option value="LAKUKAN PEMASANGAN">Lakukan Pemasangan</option>
+                                <option value="PEMASANGAN BATAL">Pengajuan Ditolak</option>
                             </select>
                             <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>

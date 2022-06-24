@@ -47,8 +47,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="ket">Keterangan</label>
-                                <textarea class="form-control" id="ket" name="ket" style="width: 300px"
-                                    rows="3"></textarea>
+                                <select name="ket" id="ket" class="form-control" style="width: 300px">
+                                    <option value="">Pilih Data</option>
+                                    <option value="LAKUKAN SURVEY">Lakukan Survey Lapangan</option>
+                                </select>
                                 <?= form_error('ket', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

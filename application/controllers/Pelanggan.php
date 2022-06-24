@@ -10,12 +10,15 @@ class Pelanggan extends CI_Controller
         $this->load->model('Pelanggan_model', 'pelanggan');
         $this->load->model('Pengajuan_model', 'pengajuan');
         $this->load->model('Listrik_model', 'listrik');
+        $this->load->model('Pembayaran_model', 'pembayaran');
     }
 
     public function index()
     {
         $data['title'] = 'Halaman Pelanggan';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pengajuan'] = $this->pengajuan->getDataPengajuanById();
+        $data['pembayaran'] = $this->pembayaran->getDataPembayaranById();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

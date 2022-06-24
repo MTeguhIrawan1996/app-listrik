@@ -163,4 +163,22 @@ class Pengajuan_model extends CI_model
 			$this->db->insert('tracking', $data);
 
     }
+
+    // Home Admin
+    public function getJumlahPengajuanPemasangan()
+    {
+        $this->db->select('COUNT(*)as total');
+        $this->db->where('delete', 1);
+        return $this->db->get('ajukan_pemasangan')->row()->total;
+    }
+
+    public function getJumlahPengajuanproses()
+    {
+        $this->db->select('COUNT(*)as total');
+        $this->db->where('status', 0);        
+        return $this->db->get('ajukan_pemasangan')->row()->total;
+    }
+
+    // Home User
+    
 }

@@ -148,4 +148,42 @@ class Surat_model extends CI_model
         }
         return $hasil;
     }
+
+    // Home Admin
+    public function getJumlahHasilSurvey()
+    {
+        $this->db->select('COUNT(*)as total');
+        $this->db->where_in('ket',['BISA DILAKUKAN PEMASANGAN','TIDAK BISA DILAKUKAN PEMASANGAN']);
+        return $this->db->get('surat_tugas')->row()->total;
+    }
+
+    public function getJumlahHasilPemasangan()
+    {
+        $this->db->select('COUNT(*)as total');
+        $this->db->where('status',5);
+        return $this->db->get('ajukan_pemasangan')->row()->total;
+    }
+
+    // Home Petugas
+    public function getJumlahPerintahSurvey()
+    {
+         $data = [
+            'petugas_id' => $this->session->userdata('id')
+        ];
+        $this->db->select('COUNT(*)as total');
+        $this->db->where('ket', 'LAKUKAN SURVEY');
+        $this->db->where($data);
+        return $this->db->get('surat_tugas')->row()->total;
+    }
+
+    public function getJumlahPerintahPemasangan()
+    {
+        $data = [
+            'petugas_id' => $this->session->userdata('id')
+        ];
+        $this->db->select('COUNT(*)as total');
+        $this->db->where('ket', 'LAKUKAN PEMASANGAN');
+        $this->db->where($data);
+        return $this->db->get('surat_tugas')->row()->total;
+    }
 }
